@@ -1,7 +1,5 @@
 # CLAUDE.md — Project North
 
-> **Setup note:** this file was drafted in the planning workspace. Place it at the repo root as `CLAUDE.md`, and place the three design documents in `docs/`. Delete this note afterward.
-
 ## What this project is
 
 Project North is a 2D top-down survival life-sim with a supernatural slow-burn mystery — a cozy homestead game that freezes into an arcane survival story. Solo developer. Godot 4.x (.NET/C#), pixel art, PC/Steam only.
@@ -12,6 +10,25 @@ Project North is a 2D top-down survival life-sim with a supernatural slow-burn m
 - `project_north_tech.md` — architecture, weather system, milestone roadmap (M0–M5)
 
 When code and docs disagree, flag it — don't silently pick one. When a design question isn't answered in the docs, ask; don't invent a decision and bury it in code. Small implementation choices are fine to make; anything marked **[OPEN]** in the docs is not yours to resolve.
+
+## Pinned toolchain
+
+| Thing | Version | Where it's pinned |
+|---|---|---|
+| Godot editor | **4.6.2.stable.mono** (`/Applications/Godot_mono.app`) | `game/project.godot` → `config/features` |
+| `Godot.NET.Sdk` | **4.6.2** — must match the editor minor | `game/ProjectNorth.Game.csproj` |
+| .NET SDK | **9.0.x** | `global.json` (`rollForward: latestFeature`) |
+| Target framework | **`net9.0`** everywhere | `Directory.Build.props` |
+
+⚠️ **`net9.0`, not the `net8.0` written in the M0 brief.** Godot 4.6.2 generates `net9.0`
+csprojs, and `game/` holds a `ProjectReference` to `src/ProjectNorth.Sim`, so Sim can never
+target a framework *newer* than the game project. Signed off 2026-07-28. Don't "fix" this
+back to net8.0 — the brief predates the installed toolchain.
+
+There is also a non-mono **Godot 4.4.1** at `/Applications/Godot.app`. It cannot run C# at
+all. Always open this project with `Godot_mono.app`.
+
+Upgrade Godot only at milestone boundaries (TECH §1), and bump editor + SDK + `config/features` together.
 
 ## Architecture rules (non-negotiable)
 
@@ -34,10 +51,12 @@ When code and docs disagree, flag it — don't silently pick one. When a design 
 ## Repo layout
 
 ```
-project-north/
+ProjectNorth/
   CLAUDE.md                     # this file
   ProjectNorth.sln              # Sim + Tests (Godot manages its own project inside game/)
-  docs/                         # the three design documents (source of truth)
+  Directory.Build.props         # repo-wide C# settings (net9.0, nullable, warnings-as-errors)
+  global.json                   # pins the .NET SDK to 9.0.x
+  docs/                         # the three design documents (source of truth) + the M0 brief
   src/ProjectNorth.Sim/         # pure C# simulation (Calendar/ Core/ Weather/ Needs/ Economy/ Save/ ...)
   tests/ProjectNorth.Sim.Tests/ # xUnit suite against Sim
   game/                         # the Godot 4.x project

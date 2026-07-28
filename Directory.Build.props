@@ -1,0 +1,21 @@
+<Project>
+
+  <!--
+    Repo-wide C# settings (CLAUDE.md "Working conventions").
+
+    TargetFramework is net9.0 everywhere, not the net8.0 named in the M0 brief:
+    Godot 4.6.2 generates net9.0 csprojs, and game/ holds a ProjectReference to
+    src/ProjectNorth.Sim, so Sim cannot target a framework newer than the game.
+    See CLAUDE.md "Pinned toolchain" before changing this.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+</Project>

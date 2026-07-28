@@ -1,0 +1,42 @@
+# ---- Godot ----
+game/.godot/
+game/android/
+game/.mono/
+*.translation
+
+# Godot exports
+/export/
+/builds/
+
+# ---- .NET ----
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+[Ee]xport[Dd]ebug/
+[Ee]xport[Rr]elease/
+*.user
+*.userprefs
+*.suo
+*.nupkg
+project.lock.json
+.vs/
+
+# Test output
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+coverage/
+
+# ---- IDEs ----
+.idea/
+.vscode/
+*.sln.DotSettings.user
+*.csproj.user
+
+# ---- OS junk ----
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The pure simulation layer. CLAUDE.md rule 1: this project never references
+    Godot, and it deliberately has NO PackageReference of any kind — everything
+    here must be runnable headless, in CI, and inside the balance harness.
+  -->
+  <PropertyGroup>
+    <RootNamespace>ProjectNorth.Sim</RootNamespace>
+    <AssemblyName>ProjectNorth.Sim</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+</Project>

@@ -10,13 +10,25 @@ config_version=5
 
 [application]
 
-config/name="project north"
+config/name="Project North"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+; Pixel-art display chain (brief Step 3.1). 640x360 is the authored resolution;
+; the window opens at exactly 2x that, and "viewport" stretch scales whole pixels
+; rather than resampling them.
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+
 [dotnet]
 
-project/assembly_name="project north"
+project/assembly_name="ProjectNorth.Game"
 
 [physics]
 
@@ -24,4 +36,7 @@ project/assembly_name="project north"
 
 [rendering]
 
+; Nearest — the whole point of pixel art. Linear filtering (the engine default)
+; would blur every sprite.
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

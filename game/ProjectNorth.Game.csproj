@@ -1,0 +1,23 @@
+<Project Sdk="Godot.NET.Sdk/4.6.2">
+
+  <!--
+    The Godot half of the project. Deliberately NOT in the root ProjectNorth.sln:
+    resolving Godot.NET.Sdk needs NuGet plus a version aligned with the installed
+    editor, and CI has neither. Keeping it out means `dotnet test` at the root stays
+    pure .NET and runs anywhere (TECH §2, brief Step 0.4).
+
+    The SDK version must match the installed editor's minor version — see the
+    "Pinned toolchain" table in CLAUDE.md before bumping either one.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>ProjectNorth.Game</RootNamespace>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- One direction: Presentation depends on Sim. Sim never depends on this. -->
+    <ProjectReference Include="..\src\ProjectNorth.Sim\ProjectNorth.Sim.csproj" />
+  </ItemGroup>
+
+</Project>

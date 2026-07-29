@@ -70,5 +70,19 @@ ProjectNorth/
 
 ## Current state
 
-- **Milestone:** M0 (walking skeleton) — see `docs/project_north_tech.md` §7 and the M0 brief.
+- **Milestone: M0 (walking skeleton) is complete** as of 2026-07-28 — every Definition of
+  Done item in `docs/project_north_m0_brief.md` is met. What exists: the pure-C# Sim
+  (`SimVec2`, `SimRng`, `GameDate`/`GameClock`/`SeasonController`, weather API stubs,
+  versioned saves, `SimWorld`), 123 xUnit tests, a Godot project that boots and drives the
+  sim clock, and CI.
+- **M1 has not been started.** Per TECH §7 it is the GDD slice: one map region, day/night +
+  temperature + warmth/hunger, chop/carry/one cabin repair, one weather front that forces
+  the player indoors, one plane visit with a working order sheet, one scripted deniable
+  anomaly. The real `ClimateDirector` replaces `ConstantWeatherProvider` here.
+- **Milestone discipline holds** (TECH §7): don't build M2 features while an M1 loop feels
+  bad. M1's success test is a felt one — does a storm arriving while you're out feel like an
+  event? — so it needs playing, not just passing tests.
 - **Live decision agenda:** GDD §12. Highest-priority opens: lore naming sign-off, salt/mineral site, crafting spec pass, cartography depth.
+- **Nothing in M0 resolved an [OPEN].** No in-fiction naming was needed, so the unsigned lore
+  glossary (LORE §8) still gates nothing built so far — that changes the moment M1 content
+  lands.
